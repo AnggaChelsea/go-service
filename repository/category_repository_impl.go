@@ -29,6 +29,7 @@ func (repository CategoryRepositoryImpl) Update(ctx context.Context, tx *sql.Tx,
 	SQL := "update category set name = ? where id = ?"
 	_, err := tx.ExecContext(ctx, SQL, category.Name, category.Id)
 	helper.PanicError(err)
+
 	//TODO implement me
 	return category
 }
@@ -38,6 +39,7 @@ func (repository CategoryRepositoryImpl) Delete(ctx context.Context, tx *sql.Tx,
 	SQL := "delete from category where id = ?"
 	_, err := tx.ExecContext(ctx, SQL, category.Id)
 	helper.PanicError(err)
+
 	//TODO implement me
 }
 
@@ -46,6 +48,7 @@ func (repository CategoryRepositoryImpl) FindById(ctx context.Context, tx *sql.T
 	SQL := "select id, name from category  where id = ?"
 	rows, err := tx.QueryContext(ctx, SQL, categoryId)
 	helper.PanicError(err)
+	defer rows.Close()
 	category := domain.Category{}
 	if rows.Next() {
 		err := rows.Scan(&category.Id, &category.Name)

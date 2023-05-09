@@ -32,13 +32,13 @@ func (controller CategoryControllerImpl) Create(writer http.ResponseWriter, requ
 }
 
 func (controller CategoryControllerImpl) Update(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
-	categoryupdateRequest := web.CategoryUpdateRequest{}
-	helper.JsonFormBodyRequest(request, &categoryupdateRequest)
-	catoryId := params.ByName("categoryId")
-	id, err := strconv.Atoi(catoryId)
+	categoryUpdateRequest := web.CategoryUpdateRequest{}
+	helper.JsonFormBodyRequest(request, &categoryUpdateRequest)
+	categoryId := params.ByName("categoryId")
+	id, err := strconv.Atoi(categoryId)
 	helper.PanicError(err)
-	categoryupdateRequest.Id = id
-	categoryResponse := controller.CategoryService.Updated(request.Context(), categoryupdateRequest)
+	categoryUpdateRequest.Id = id
+	categoryResponse := controller.CategoryService.Updated(request.Context(), categoryUpdateRequest)
 	webResponse := web.WebResponse{
 		Code:   200,
 		Status: "Ok",
