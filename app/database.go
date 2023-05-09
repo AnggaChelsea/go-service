@@ -7,8 +7,7 @@ import (
 )
 
 func NewDb() *sql.DB {
-	dsn := "root:Sayangmamah1.@tcp(localhost:3306)/example_golang_database?parseTime=true"
-	db, err := sql.Open("mysql", dsn)
+	db, err := sql.Open("mysql", "root:Sayangmamah1.@tcp(localhost:3306)/belajar_golang_restapi")
 	helper.PanicError(err)
 	db.SetMaxOpenConns(5)
 	db.SetMaxOpenConns(20)

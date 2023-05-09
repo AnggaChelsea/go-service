@@ -64,7 +64,7 @@ func (repository CategoryRepositoryImpl) FindAll(ctx context.Context, tx *sql.Tx
 	var categories []domain.Category
 	for rows.Next() {
 		category := domain.Category{}
-		err := rows.Scan(&categories, category)
+		err := rows.Scan(&category.Id, &category.Name)
 		helper.PanicError(err)
 		categories = append(categories, category)
 	}
