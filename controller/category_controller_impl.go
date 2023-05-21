@@ -3,6 +3,7 @@ package controller
 import (
 	"github.com/julienschmidt/httprouter"
 	"net/http"
+	"restapi-golang/excepction"
 	"restapi-golang/helper"
 	"restapi-golang/model/web"
 	"restapi-golang/services"
@@ -36,7 +37,9 @@ func (controller CategoryControllerImpl) Update(writer http.ResponseWriter, requ
 	helper.JsonFormBodyRequest(request, &categoryUpdateRequest)
 	categoryId := params.ByName("categoryId")
 	id, err := strconv.Atoi(categoryId)
-	helper.PanicError(err)
+	if err != nil {
+		excepction.NewNotFoundError(err.Error())
+	}
 	categoryUpdateRequest.Id = id
 	categoryResponse := controller.CategoryService.Updated(request.Context(), categoryUpdateRequest)
 	webResponse := web.WebResponse{
@@ -50,7 +53,9 @@ func (controller CategoryControllerImpl) Update(writer http.ResponseWriter, requ
 func (controller CategoryControllerImpl) Delete(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
 	catoryId := params.ByName("categoryId")
 	id, err := strconv.Atoi(catoryId)
-	helper.PanicError(err)
+	if err != nil {
+		excepction.NewNotFoundError(err.Error())
+	}
 	controller.CategoryService.Delete(request.Context(), id)
 	webResponse := web.WebResponse{
 		Code:   200,
@@ -63,7 +68,9 @@ func (controller CategoryControllerImpl) FindById(writer http.ResponseWriter, re
 
 	catoryId := params.ByName("categoryId")
 	id, err := strconv.Atoi(catoryId)
-	helper.PanicError(err)
+	if err != nil {
+		excepction.NewNotFoundError(err.Error())
+	}
 	categoryResponse := controller.CategoryService.FindById(request.Context(), id)
 	webResponse := web.WebResponse{
 		Code:   200,
