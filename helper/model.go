@@ -19,3 +19,13 @@ func CategoryResponses(categories []domain.Category) []web.CategoryResponse {
 	}
 	return categoriesResponse
 }
+
+func ToUsersResponse(users domain.Users) web.UsersResponse {
+	return web.UsersResponse{
+		Id:           users.Id,
+		NamaLengkap:  users.NamaLengkap,
+		Email:        users.Email,
+		IsPerusahaan: users.IsPerusahaan,
+		Password:     users.Password,
+	}
+}

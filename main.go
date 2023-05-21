@@ -1,8 +1,6 @@
 package main
 
 import (
-	"github.com/go-playground/validator/v10"
-	_ "github.com/go-sql-driver/mysql"
 	"net/http"
 	"restapi-golang/app"
 	"restapi-golang/controller"
@@ -10,6 +8,9 @@ import (
 	"restapi-golang/middleware"
 	"restapi-golang/repository"
 	"restapi-golang/services"
+
+	"github.com/go-playground/validator/v10"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 func main() {

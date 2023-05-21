@@ -1,7 +1,7 @@
 package domain
 
 type Users struct {
-	Id           int64
+	Id           int
 	NamaLengkap  string
 	UserName     string
 	Email        string

@@ -1,9 +1,10 @@
 package app
 
 import (
-	"github.com/julienschmidt/httprouter"
 	"restapi-golang/controller"
 	"restapi-golang/excepction"
+
+	"github.com/julienschmidt/httprouter"
 )
 
 func NewRouter(categoryController controller.CategoryController) *httprouter.Router {
@@ -14,6 +15,10 @@ func NewRouter(categoryController controller.CategoryController) *httprouter.Rou
 	router.PUT("/api/categories/:categoryId", categoryController.Update)
 	router.POST("/api/categories", categoryController.Create)
 	router.DELETE("/api/categories/:categoryId", categoryController.Delete)
+
+	//users router
+
+	// router.POST("/api/create-users")
 
 	router.PanicHandler = excepction.ErrorHandler
 	return router
